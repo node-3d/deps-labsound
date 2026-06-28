@@ -1,11 +1,11 @@
-'use strict';
+import { exec as execCb } from 'node:child_process';
+import { promisify } from 'node:util';
 
-const util = require('node:util');
-const exec = util.promisify(require('node:child_process').exec);
+const exec = promisify(execCb);
 
 const {
 	getPlatform,
-} = require('addon-tools-raub');
+} = await import('@node-3d/addon-tools');
 
 
 const platform = getPlatform();
@@ -61,12 +61,10 @@ const buildLib = async () => {
 };
 
 
-(async () => {
-	try {
-		await updateSystem();
-		
-		await buildLib();
-	} catch (error) {
-		fail(error);
-	}
-})();
+try {
+	await updateSystem();
+	
+	await buildLib();
+} catch (error) {
+	fail(error);
+}

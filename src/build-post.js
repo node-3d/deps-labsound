@@ -1,10 +1,9 @@
-'use strict';
-
-const path = require('node:path');
+import fs from 'node:fs/promises';
+import path from 'node:path';
 
 const {
-	getPlatform, getBin, ensuredir, copyall, copy,
-} = require('addon-tools-raub');
+	getPlatform, getBin, ensuredir, copy,
+} = await import('@node-3d/addon-tools');
 
 
 const bin = getBin();
@@ -18,19 +17,17 @@ const fail = (error) => {
 };
 
 
-(async () => {
-	try {
-		await ensuredir(binPath);
-		
-		if (['linux', 'aarch64'].includes(platform)) {
-			await copy(
-				path.resolve(`src/alsa-${platform}/libasound.so`),
-				`${binPath}/libasound.so`,
-			);
-		}
-		
-		await copyall(path.resolve('src/build'), binPath);
-	} catch (error) {
-		fail(error);
+try {
+	await ensuredir(binPath);
+	
+	if (['linux', 'aarch64'].includes(platform)) {
+		await copy(
+			path.resolve(`src/alsa-${platform}/libasound.so`),
+			`${binPath}/libasound.so`,
+		);
 	}
-})();
+	
+	await fs.cp(path.resolve('src/build'), binPath, { recursive: true });
+} catch (error) {
+	fail(error);
+}

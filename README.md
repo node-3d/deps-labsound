@@ -2,12 +2,12 @@
 
 This is a part of [Node3D](https://github.com/node-3d) project.
 
-[![NPM](https://badge.fury.io/js/deps-labsound-raub.svg)](https://badge.fury.io/js/deps-labsound-raub)
-[![ESLint](https://github.com/node-3d/deps-labsound-raub/actions/workflows/eslint.yml/badge.svg)](https://github.com/node-3d/deps-labsound-raub/actions/workflows/eslint.yml)
-[![Test](https://github.com/node-3d/deps-labsound-raub/actions/workflows/test.yml/badge.svg)](https://github.com/node-3d/deps-labsound-raub/actions/workflows/test.yml)
+[![NPM](https://badge.fury.io/js/%40node-3d%2Fdeps-labsound.svg)](https://badge.fury.io/js/@node-3d/deps-labsound)
+[![Lint](https://github.com/node-3d/deps-labsound/actions/workflows/lint.yml/badge.svg)](https://github.com/node-3d/deps-labsound/actions/workflows/lint.yml)
+[![Test](https://github.com/node-3d/deps-labsound/actions/workflows/test.yml/badge.svg)](https://github.com/node-3d/deps-labsound/actions/workflows/test.yml)
 
 ```console
-npm i -s deps-labsound-raub
+npm install @node-3d/deps-labsound
 ```
 
 
@@ -30,12 +30,12 @@ The original LabSound sources are slightly modified, and now include:
 * See fork [raub/LabSound](https://github.com/raub/LabSound) - you can review all changes since `LabSound@1.2.0`.
 
 
-> For unmodified `LabSound@1.2.0`, use `deps-labsound-raub@<=5.0.0`.
+> For unmodified `LabSound@1.2.0`, use `@node-3d/deps-labsound@<=5.0.0`.
 
 
 ## binding.gyp
 
-See example in [webaudio-raub](https://github.com/node-3d/webaudio-raub/tree/master/src) Node.js addon.
+See example in [@node-3d/webaudio](https://github.com/node-3d/webaudio/tree/master/src/cpp) Node.js addon.
 
 
 ## HRTF Database
@@ -45,7 +45,7 @@ The copy of
 is contained in the **hrtf** directory. Its absolute path is accessible as:
 
 ```js
-const { hrtf } = require('deps-labsound-raub');
+import { hrtf } from '@node-3d/deps-labsound';
 ```
 
 
