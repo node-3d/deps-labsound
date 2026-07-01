@@ -4,7 +4,13 @@
 	rm -rf build LabSound
 	mkdir -p build
 	
-	git clone --depth 1 -b 1.3.0-raub https://github.com/raub/LabSound.git LabSound
+	git init LabSound
+	(
+		cd LabSound
+		git remote add origin https://github.com/raub/LabSound.git
+		git fetch --depth 1 origin 1cccca8c31a8a68ae1b47843481f7a06598ccbbb
+		git checkout --detach FETCH_HEAD
+	)
 	
 	rm -rf ../include/LabSound
 	mkdir -p ../include/LabSound
