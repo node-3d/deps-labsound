@@ -11,10 +11,10 @@ npm install @node-3d/deps-labsound
 ```
 
 
-This dependency package is distributing **LabSound**
-binaries through **NPM** for **Node.js** addons.
+This dependency package distributes **LabSound**
+binaries through **npm** for **Node.js** addons.
 
-* Platforms (x64): Windows, Linux, MacOS ARM, Linux ARM.
+* Platforms: Windows x64, Linux x64, Linux ARM64, macOS ARM64.
 * Libraries: LabSound, libnyquist.
 * Linking: static lib.
 * Backend: RtAudio.
@@ -35,7 +35,7 @@ The original LabSound sources are slightly modified, and now include:
 
 ## binding.gyp
 
-See example in [@node-3d/webaudio](https://github.com/node-3d/webaudio/tree/master/src/cpp) Node.js addon.
+See the [@node-3d/webaudio native source](https://github.com/node-3d/webaudio/tree/master/src/cpp) for a consuming addon example.
 
 
 ## HRTF Database
@@ -52,5 +52,5 @@ import { hrtf } from '@node-3d/deps-labsound';
 ## Legal notice
 
 This software uses the [LabSound audio engine](https://github.com/LabSound/LabSound) under BSD Clause 2.
-A copy of LabSound license [is included](/LABSOUND_BSD), and can also be found at
+A copy of the LabSound license [is included](LABSOUND_BSD), and can also be found at
 [LabSound repository](https://github.com/LabSound/LabSound/blob/master/LICENSE).
