@@ -1,4 +1,4 @@
-# LabSound binaries
+# LabSound binaries and headers
 
 This is a part of [Node3D](https://github.com/node-3d) project.
 
@@ -10,11 +10,27 @@ This is a part of [Node3D](https://github.com/node-3d) project.
 npm install @node-3d/deps-labsound
 ```
 
+## Binary Provenance
+
+Release binary archives for this package are published by public GitHub Actions
+workflows.
+When a release asset includes a GitHub Artifact Attestation, you can verify that
+the downloaded archive was published by the visible workflow in this repository:
+
+```console
+gh release download <tag> -R node-3d/deps-labsound -p <platform>.gz
+gh attestation verify <platform>.gz -R node-3d/deps-labsound
+```
+
+The attestation links the archive to the repository, workflow, commit, and
+release build identity. It does not replace review of the source code, workflow,
+or third-party library contents.
+
 
 This dependency package distributes **LabSound**
-binaries through **npm** for **Node.js** addons.
+binaries and headers through **npm** for **Node.js** addons.
 
-* Platforms: Windows x64, Linux x64, Linux ARM64, macOS ARM64.
+* Platforms: Windows x64, Linux x64/ARM64, macOS ARM64.
 * Libraries: LabSound, libnyquist.
 * Linking: static lib.
 * Backend: RtAudio.
