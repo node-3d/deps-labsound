@@ -10,18 +10,7 @@ This is a part of [Node3D](https://github.com/node-3d) project.
 npm install @node-3d/deps-labsound
 ```
 
-## Binary Origin
 
-Release archives are built by this repository's public GitHub Actions workflows.
-
-Attestations: https://github.com/node-3d/deps-labsound/attestations
-
-To verify a downloaded archive:
-
-```bash
-gh release download <tag> -R node-3d/deps-labsound -p <platform>.gz
-gh attestation verify <platform>.gz -R node-3d/deps-labsound
-```
 
 
 This dependency package distributes **LabSound**
@@ -67,3 +56,16 @@ import { hrtf } from '@node-3d/deps-labsound';
 This software uses the [LabSound audio engine](https://github.com/LabSound/LabSound) under BSD Clause 2.
 A copy of the LabSound license [is included](LABSOUND_BSD), and can also be found at
 [LabSound repository](https://github.com/LabSound/LabSound/blob/master/LICENSE).
+
+## Binary Origin
+
+Release archives are built by this repository's public GitHub Actions workflows.
+
+Attestations: https://github.com/node-3d/deps-labsound/attestations
+
+To verify a downloaded archive:
+
+```bash
+gh release download <tag> -R node-3d/deps-labsound -p <platform>.gz
+gh attestation verify <platform>.gz -R node-3d/deps-labsound
+```
