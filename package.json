@@ -41,6 +41,8 @@
 		"test:watch": "node --test --watch \"test/**/*.test.js\"",
 		"test-ci": "npm run test:ci",
 		"test:ci": "node --test \"test/**/*.test.js\"",
+		"format:ts": "oxfmt -c ./oxfmt.config.ts --no-error-on-unmatched-pattern \"**/*.{js,jsx,ts,tsx}\"",
+		"format:ts:ci": "oxfmt -c ./oxfmt.config.ts --check --no-error-on-unmatched-pattern \"**/*.{js,jsx,ts,tsx}\"",
 		"lint": "npm run lint:all",
 		"lint:oxlint": "oxlint .",
 		"lint:all": "npm run lint:oxlint"

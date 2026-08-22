@@ -16,7 +16,7 @@ npm install @node-3d/deps-labsound
 This dependency package distributes **LabSound**
 binaries and headers through **npm** for **Node.js** addons.
 
-* Platforms: Windows x64, Linux x64/ARM64, macOS ARM64.
+* Platforms: Windows x64/ARM64, Linux x64/ARM64, macOS x64/ARM64.
 * Libraries: LabSound, libnyquist.
 * Linking: static lib.
 * Backend: RtAudio.
