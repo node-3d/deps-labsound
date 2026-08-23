@@ -24,10 +24,9 @@ jobs:
             build_platform: x64
             cmake_toolset: v142
           - target: windows-arm64
-            os: windows-11-vs2026-arm
+            os: windows-11-arm
             node_arch: arm64
             build_platform: ARM64
-            vs_prerelease: true
           - target: linux-x64
             os: ubuntu-22.04
             node_arch: x64
@@ -72,7 +71,7 @@ jobs:
         uses: microsoft/setup-msbuild@v3
         with:
           msbuild-architecture: ${{ matrix.node_arch }}
-          vs-prerelease: ${{ matrix.vs_prerelease || false }}
+          vs-prerelease: false
 
       - name: Build Pre Step
         run: chmod +x src/extract.sh && src/extract.sh
