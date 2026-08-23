@@ -12,6 +12,11 @@
 	if [[ "${BUILD_PLATFORM:-x64}" == 'ARM64' ]]; then
 		# libnyquist does not detect MSVC's ARM64 target macro. Its AVX and
 		# minimp3 SIMD paths are x86-specific on the pinned upstream source.
+		# Opus and Vorbis also use _WIN64 to select SSE headers, although that
+		# macro is set for ARM64. Restrict those paths to the x64 target.
+		sed -i 's/defined (WIN64) || defined (_WIN64)/defined(_M_X64)/' third_party/libnyquist/third_party/opus/celt/float_cast.h
+		sed -i 's/defined(_MSC_VER) && defined(_WIN64)/defined(_MSC_VER) \&\& defined(_M_X64)/' third_party/libnyquist/third_party/libvorbis/src/os.h
+
 		architecture_args=(
 			-DCMAKE_CXX_FLAGS=/DARCH_CPU_LITTLE_ENDIAN\ /DMINIMP3_NO_SIMD
 			-DLIBNYQUIST_ENABLE_AVX=OFF
