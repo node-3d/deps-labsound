@@ -8,7 +8,13 @@
 		toolset_args=(-T "$CMAKE_TOOLSET")
 	fi
 
-	cmake -A "${BUILD_PLATFORM:-x64}" "${toolset_args[@]}" -DLABSOUND_USE_RTAUDIO=ON ..
+	architecture_args=()
+	if [[ "${BUILD_PLATFORM:-x64}" == 'ARM64' ]]; then
+		# libnyquist does not detect MSVC's ARM64 target macro.
+		architecture_args=(-DCMAKE_CXX_FLAGS=/DARCH_CPU_LITTLE_ENDIAN)
+	fi
+
+	cmake -A "${BUILD_PLATFORM:-x64}" "${toolset_args[@]}" "${architecture_args[@]}" -DLABSOUND_USE_RTAUDIO=ON ..
 	cmake --build . --target libnyquist --config Release
 	cmake --build . --target LabSound --config Release
 )
