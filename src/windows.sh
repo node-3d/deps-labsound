@@ -14,7 +14,7 @@
 		architecture_args=(-DCMAKE_CXX_FLAGS=/DARCH_CPU_LITTLE_ENDIAN)
 	fi
 
-	cmake -A "${BUILD_PLATFORM:-x64}" "${toolset_args[@]}" "${architecture_args[@]}" -DLABSOUND_USE_RTAUDIO=ON ..
+	MSYS_NO_PATHCONV=1 cmake -A "${BUILD_PLATFORM:-x64}" "${toolset_args[@]}" "${architecture_args[@]}" -DLABSOUND_USE_RTAUDIO=ON ..
 	cmake --build . --target libnyquist --config Release
 	cmake --build . --target LabSound --config Release
 )
