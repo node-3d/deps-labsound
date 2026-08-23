@@ -16,9 +16,12 @@ set -euo pipefail
 		# minimp3 SIMD paths are x86-specific on the pinned upstream source.
 		# Opus and Vorbis choose x86 intrinsic paths from _WIN64, which is also
 		# defined on ARM64. Disable those paths and use their scalar fallbacks.
+		# Its stack allocator only recognizes the nonstandard WIN32 macro, while
+		# MSVC ARM64 defines _WIN32; teach it to select MSVC's _alloca intrinsic.
 		sed -i 's/#elif (defined(_MSC_VER) && _MSC_VER >= 1400) && (defined (WIN64) || defined (_WIN64))/#elif 0/' ../third_party/libnyquist/third_party/opus/celt/float_cast.h
 		sed -i 's/#elif (defined(_MSC_VER) && _MSC_VER >= 1400) && (defined (WIN32) || defined (_WIN32))/#elif 0/' ../third_party/libnyquist/third_party/opus/celt/float_cast.h
 		sed -i 's/#if (defined(_MSC_VER) && defined(_WIN64)) || (defined(__GNUC__) && defined (__x86_64__))/#if 0/' ../third_party/libnyquist/third_party/libvorbis/src/os.h
+		sed -i 's/# ifdef WIN32/# if defined(WIN32) || defined(_WIN32)/g' ../third_party/libnyquist/third_party/opus/celt/stack_alloc.h
 
 		architecture_args=(
 			-DCMAKE_CXX_FLAGS=/DARCH_CPU_LITTLE_ENDIAN\ /DMINIMP3_NO_SIMD
