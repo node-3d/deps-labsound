@@ -32,10 +32,10 @@
 		"install.js",
 		"LABSOUND_BSD",
 		"LICENSE",
-		"package.json",
 		"README.md"
 	],
 	"scripts": {
+		"i": "npm install --workspaces=false",
 		"postinstall": "node install.js",
 		"test": "npm run test:watch",
 		"test:watch": "node --test --watch \"test/**/*.test.js\"",
