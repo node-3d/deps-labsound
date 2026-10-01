@@ -11,8 +11,35 @@
 		'library_dirs': ['<(dep_bin)'],
 		'conditions': [
 			['OS=="linux"', { 'cflags_cc!': ['-fno-rtti', '-fno-exceptions'], 'cflags_cc': ['-frtti', '-fexceptions'], 'libraries': ["-Wl,-rpath,'$$ORIGIN/../../node_modules/@node-3d/deps-labsound/<(bin)'", '-lLabSound', '-llibnyquist', '-lasound'] }],
-			['OS=="mac"', { 'libraries': ['-Wl,-rpath,@loader_path/../../node_modules/@node-3d/deps-labsound/<(bin)', '-lLabSound', '-llibnyquist'], 'xcode_settings': { 'GCC_ENABLE_CPP_RTTI': 'YES', 'GCC_ENABLE_CPP_EXCEPTIONS': 'YES' } }],
-			['OS=="win"', { 'libraries': ['-lLabSound', '-llibnyquist', '-lwinmm'], 'defines!': ['_HAS_EXCEPTIONS=0'], 'msvs_settings': { 'VCCLCompilerTool': { 'RuntimeLibrary': 2, 'ExceptionHandling': '1', 'AdditionalOptions!': ['/MT'], 'AdditionalOptions': ['/MD', '/EHsc', '/GR'] } } }],
+			['OS=="mac"', {
+				'cflags_cc!': ['-fno-rtti', '-fno-exceptions'],
+				'cflags_cc': ['-frtti', '-fexceptions'],
+				'libraries': [
+					'-Wl,-rpath,@loader_path/../../node_modules/@node-3d/deps-labsound/<(bin)',
+					'-llibnyquist',
+					'-L<(dep_bin)',
+					'<(dep_bin)/LabSound',
+				],
+				'xcode_settings': {
+					'DYLIB_INSTALL_NAME_BASE': '@rpath',
+					'GCC_ENABLE_CPP_RTTI': 'YES',
+					'GCC_ENABLE_CPP_EXCEPTIONS': 'YES',
+					'OTHER_LDFLAGS': ['-framework AudioUnit', '-framework CoreAudio', '-framework AudioToolbox'],
+					'OTHER_CPLUSPLUSFLAGS!': ['-fno-rtti', '-fno-exceptions'],
+					'OTHER_CPLUSPLUSFLAGS': ['-frtti', '-fexceptions'],
+				},
+			}],
+			['OS=="win"', {
+				'libraries': ['-lwinmm', '-luser32', '-lLabSound', '-llibnyquist'],
+				'defines!': ['_HAS_EXCEPTIONS=0'],
+				'msvs_settings': {
+					'VCCLCompilerTool': {
+						'ExceptionHandling': '1',
+						'AdditionalOptions!': ['/EHa-s-c-', '/GR-', '/MT'],
+						'AdditionalOptions': ['/EHsc', '/GR', '/MD'],
+					},
+				},
+			}],
 		],
 	}],
 }
