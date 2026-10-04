@@ -1,3 +1,5 @@
+export MACOSX_DEPLOYMENT_TARGET=13.5
+
 (
 	cd src/LabSound
 	mkdir -p build
@@ -7,7 +9,7 @@
 		${CMAKE_ARGS:-} \
 		-DCMAKE_BUILD_TYPE=Release -DCMAKE_RULE_MESSAGES=OFF \
 		-DLABSOUND_USE_RTAUDIO=ON -DCMAKE_POSITION_INDEPENDENT_CODE=ON \
-		-DCMAKE_OSX_DEPLOYMENT_TARGET="11.0" ..
+		-DCMAKE_OSX_DEPLOYMENT_TARGET=13.5 ..
 	
 	cmake --build . --target libnyquist --config Release
 	cmake --build . --target LabSound --config Release
